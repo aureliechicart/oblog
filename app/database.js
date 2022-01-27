@@ -1,6 +1,5 @@
-const { Client } = require('pg');
-const client = new Client();
+// Pooling
+const { Pool } = require('pg');
+const pool = new Pool();
 
-client.connect();
-
-module.exports = client;
+module.exports = pool;
