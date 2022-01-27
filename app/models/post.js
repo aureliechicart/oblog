@@ -34,7 +34,8 @@ class Post {
     * @static
     */
     static async findAll() {
-        const { rows } = await db.query('SELECT * FROM post;');
+        // here we use the 'post_with_category' view to add the category name in results (post.category)
+        const { rows } = await db.query('SELECT * FROM post_with_category;');
         // for each row we create a new instance of class Post
         return rows.map(row => new Post(row));
     }
@@ -47,7 +48,7 @@ class Post {
      * @static
      */
     static async findOne(id) {
-        const { rows } = await db.query('SELECT * FROM post WHERE id = $1;', [id]);
+        const { rows } = await db.query('SELECT * FROM post_with_category WHERE id = $1;', [id]);
         // we check if a get a result for this post id
         if (rows[0]) {
             // if we get a result, we push it in the class mould
@@ -65,7 +66,7 @@ class Post {
      * @async
      */
     static async findByCategory(cid) {
-        const { rows } = await db.query('SELECT * FROM post WHERE category_id = $1;', [cid]);
+        const { rows } = await db.query('SELECT * FROM post_with_category WHERE category_id = $1;', [cid]);
 
         return rows.map(row => new Post(row));
     }
