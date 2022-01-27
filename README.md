@@ -13,6 +13,10 @@ Database creation
 ## Seeding
 Importing data from json files using a script /data/import.js
 
+
+Adding Jsdoc to create API documentation with express-swagger-generator
+Available at: http://localhost:5461/api-docs
+
 Data validation with Joi
 
 
@@ -21,4 +25,5 @@ Data validation with Joi
 ## Technologies
 
 postgresql
-sqitch
+sqitchs
+express-swagger-generator

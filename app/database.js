@@ -10,6 +10,4 @@ const pool = new Pool({
   } : null
 });
 
-console.log(pool);
-
 module.exports = pool;

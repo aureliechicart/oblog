@@ -19,6 +19,7 @@
   "dependencies": {
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
+    "express-swagger-generator": "^1.1.17",
     "pg": "^8.7.1"
   }
 }
