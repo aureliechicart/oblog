@@ -4,11 +4,18 @@ const express = require('express');
 
 const app = express();
 
+const cors = require('cors');
+
 const expressSwagger = require('express-swagger-generator')(app);
 
 const apiRouter = require('./app/router');
 
 const port = process.env.PORT || 5461;
+
+app.use(cors());
+
+// lets the server know it will receive data as JSON
+app.use(express.json());
 
 app.use('/v1', apiRouter);
 

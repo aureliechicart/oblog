@@ -6,6 +6,10 @@ const router = Router();
 const postController = require('./controllers/postController');
 const categoryController = require('./controllers/categoryController');
 
+/** Data Vlidation */
+const postSchema = require('./schemas/post');
+const { validateBody } = require('./services/validator');
+
 /** Routes */
 
 /**
@@ -42,6 +46,8 @@ router.get('/posts/category/:id(\\d+)', postController.byCategory);
  * @returns {Array<Category>} 200 - An array of categories
  */
 router.get('/categories', categoryController.allCategories);
+
+router.post('/posts', validateBody(postSchema), postController.newPost);
 
 router.use((req, res) => res.status(404).json('endpoint not found'));
 

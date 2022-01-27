@@ -71,7 +71,45 @@ class Post {
         return rows.map(row => new Post(row));
     }
 
+    /**
+      * Inserts a new post in the DB or updates the database if the record alredy exists.
+      * 
+      * @async
+      * @function save
+      * @returns [Array] Instances of the class Post.
+      * @throws {Error} a potential SQL error.
+      */
+    async save() {
+        if (this.id) {
+            // PUT route
+            await db.query('UPDATE "post" SET slug = $1, title = $2, excerpt = $3, content = $4, categoryId = $5  WHERE id = $6;', [
+                this.slug,
+                this.title,
+                this.excerpt,
+                this.content,
+                this.category_id,
+                this.id
+            ]);
+        } else {
+            try {
+                // POST route
+                const { rows } = await db.query('INSERT INTO "post" (slug, title, content, excerpt, category_id) VALUES ($1, $2, $3, $4, $5) RETURNING id;', [
+                    this.slug,
+                    this.title,
+                    this.content,
+                    this.excerpt,
+                    this.categoryId
+                ]);
 
+                // Thanks to the RETURNING mention in the SQL query, we can return the newly assigned ID
+                this.id = rows[0].id;
+                return this.id;
+            } catch (err) {
+                throw new Error(err.detail);
+            }
+        }
+    }
 }
+
 
 module.exports = Post;

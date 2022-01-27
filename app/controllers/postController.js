@@ -24,6 +24,18 @@ const postController = {
         const thePosts = await Post.findByCategory(id);
 
         res.json(thePosts);
+    },
+    newPost: async (req, res) => {
+        const theNewPost = new Post(req.body);
+
+        // the save method runs an INSERT
+        try {
+            await theNewPost.save();
+
+            res.status(201).json(theNewPost);
+        } catch (err) {
+            res.status(500).json(err.message);
+        }
     }
 };
 
