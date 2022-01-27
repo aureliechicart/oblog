@@ -2,7 +2,7 @@ const db = require('../database');
 
 /**
  * An entity representing a blog post category
- * @typedef {Object} Category
+ * @typedef Category
  * @property {Number} id
  * @property {string} route
  * @property {string} label

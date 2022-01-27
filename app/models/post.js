@@ -2,12 +2,13 @@ const db = require('../database');
 
 /**
  * A entity representing a blog post
- * @typedef {Object} Post
+ * @typedef Post
  * @property {number} id
  * @property {string} slug
  * @property {string} title
  * @property {string} excerpt
  * @property {string} content
+ * @property {string} category
  * @property {number} categoryId
  */
 
@@ -26,12 +27,12 @@ class Post {
         }
     }
 
-     /**
-     * Fetches every post in the database
-     * @returns {Array<Post>}
-     * @async
-     * @static
-     */
+    /**
+    * Fetches every post in the database
+    * @returns {Array<Post>}
+    * @async
+    * @static
+    */
     static async findAll() {
         const { rows } = await db.query('SELECT * FROM post;');
         // for each row we create a new instance of class Post
