@@ -2,3 +2,4 @@
 %project=oblog
 
 init 2022-01-27T18:51:25Z ,,, <aurelie@LAPTOP-0LNESCTU> # creating tables
+better_post 2022-01-27T20:35:09Z ,,, <aurelie@LAPTOP-0LNESCTU> # adding a view for getting more information on post using a JOIN
