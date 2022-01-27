@@ -1,0 +1,23 @@
+{
+  "name": "oblog",
+  "version": "1.0.0",
+  "description": "Simplistic API for a blog with posts and categories\r Each post must have one category.\r Create and Read posts\r Read categories",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aureliechicart/oblog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aureliechicart/oblog/issues"
+  },
+  "homepage": "https://github.com/aureliechicart/oblog#readme",
+  "dependencies": {
+    "dotenv": "^14.3.2",
+    "pg": "^8.7.1"
+  }
+}
