@@ -7,7 +7,7 @@ CREATE TABLE post (
   title text NOT NULL,
   excerpt text NOT NULL,
   content text NOT NULL,
-  categroy_id int NOT NULL REFERENCES category(id)
+  category_id int NOT NULL REFERENCES category(id)
 );
 
 CREATE TABLE category (
