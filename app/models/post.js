@@ -24,6 +24,12 @@ class Post {
         }
     }
 
+    static async findByCategory(cid) {
+        const { rows } = await db.query('SELECT * FROM post WHERE category_id = $1;', [cid]);
+
+        return rows.map(row => new Post(row));
+    }
+
     async save() { }
 
     async delete() { }

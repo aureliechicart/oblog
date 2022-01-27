@@ -16,6 +16,14 @@ const postController = {
         } else {
             res.status(404).json('No post with this id');
         }
+    },
+    byCategory: async (req, res) => {
+        // we retrieve the category id in params
+        const { id } = req.params;
+
+        const thePosts = await Post.findByCategory(id);
+
+        res.json(thePosts);
     }
 };
 
