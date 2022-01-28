@@ -1,8 +1,25 @@
 require('dotenv').config();
 
-const express = require('express');
+const { json } = require('express');
 
-const app = express();
+// instanciating GraphQL server and configuring it
+const { GraphQLServer } = require('graphql-yoga');
+
+const typeDefs = `
+  type Query {
+    hello(name: String): String!
+  }
+`;
+
+const resolvers = {
+  Query: {
+    hello: (_, { name }) => `Hello ${name || 'World'}`,
+  },
+};
+
+const server = new GraphQLServer({ typeDefs, resolvers });
+
+const app = server.express;
 
 const cors = require('cors');
 
@@ -15,7 +32,7 @@ const port = process.env.PORT || 5461;
 app.use(cors());
 
 // lets the server know it will receive data as JSON
-app.use(express.json());
+app.use(json());
 
 app.use('/v1', apiRouter);
 
@@ -43,4 +60,4 @@ let options = {
 
 expressSwagger(options);
 
-app.listen(port, () => console.log(`Server running on port ${process.env.PORT}`));
+server.start({ port }, () => console.log(`Server is running on localhost:${port}`));

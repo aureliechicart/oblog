@@ -19,6 +19,8 @@ Available at: http://localhost:5461/api-docs
 
 Data validation with Joi
 
+Implementing a Redis cache
+Caching and flushing
 
 
 
@@ -27,3 +29,4 @@ Data validation with Joi
 postgresql
 sqitchs
 express-swagger-generator
+Redis
