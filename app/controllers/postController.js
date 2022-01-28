@@ -4,17 +4,8 @@ const cache = require('../services/cache');
 
 const postController = {
     allPosts: async (_, res) => {
-        let thePosts;
-        // if the data already exists in cache, we get them from the cache to accelerate performance
         try {
-            if (await cache.postsExist() === 1) {
-                thePosts = await cache.getPosts();
-            } else {
-                // if not, we get the data from the postgres database
-                thePosts = await Post.findAll();
-                // and we save it in the Redis cache
-                cache.setPosts(thePosts);
-            }
+            const thePosts = await Post.findAll();
             res.json(thePosts);
         } catch (error) {
             console.log(error);
@@ -41,11 +32,6 @@ const postController = {
         res.json(thePosts);
     },
     newPost: async (req, res) => {
-        // event-based invalidation
-        //  if we create a new post, the list of posts saved in cache need to be removed,
-        // to force the API to get the list of posts including the new posts from the postgresDB
-        await cache.delPosts();
-
         const theNewPost = new Post(req.body);
 
         // the save method runs an INSERT
