@@ -59,7 +59,7 @@ class Post {
     }
 
     /**
-     * Fetches every post with the given category from the database
+     * Fetches every post with the given category id from the database
      * @param {Number} cid - the category id
      * @returns {Array<Post>} can be empty for unpopular categories
      * @static
@@ -67,6 +67,19 @@ class Post {
      */
     static async findByCategory(cid) {
         const { rows } = await db.query('SELECT * FROM post_with_category WHERE category_id = $1;', [cid]);
+
+        return rows.map(row => new Post(row));
+    }
+
+    /**
+     * Fetches every post with the given category name from the database
+     * @param {Number} cname - the category name
+     * @returns {Array<Post>} can be empty for unpopular categories
+     * @static
+     * @async
+     */
+    static async findByCategoryName(cname) {
+        const { rows } = await db.query('SELECT * FROM post_with_category WHERE category = $1;', [cname]);
 
         return rows.map(row => new Post(row));
     }
@@ -82,7 +95,7 @@ class Post {
     async save() {
         if (this.id) {
             // PUT route
-            await db.query('UPDATE "post" SET slug = $1, title = $2, excerpt = $3, content = $4, categoryId = $5  WHERE id = $6;', [
+            await db.query('UPDATE "post" SET slug = $1, title = $2, excerpt = $3, content = $4, category_id = $5  WHERE id = $6;', [
                 this.slug,
                 this.title,
                 this.excerpt,
@@ -98,7 +111,7 @@ class Post {
                     this.title,
                     this.content,
                     this.excerpt,
-                    this.categoryId
+                    this.category_id
                 ]);
 
                 // Thanks to the RETURNING mention in the SQL query, we can return the newly assigned ID

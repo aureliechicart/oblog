@@ -4,7 +4,7 @@
   "description": "Simplistic API for a blog with posts and categories\r Each post must have one category.\r Create and Read posts\r Read categories",
   "main": "index.js",
   "scripts": {
-    "start": "node data/impot.js; node index.js"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "express-swagger-generator": "^1.1.17",
+    "graphql-yoga": "^1.18.3",
     "joi": "^17.6.0",
     "pg": "^8.7.1",
     "redis": "^4.0.1"
