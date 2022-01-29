@@ -35,6 +35,21 @@ class Category {
         // for each row we create a new instance of the Category class 
         return rows.map(row => new Category(row));
     }
+
+     /**
+     * Fetches every category in the database
+     * @returns {Category}
+     * @async
+     * @static
+     */
+    static async findOne(id) {
+        const { rows } = await db.query('SELECT * FROM category WHERE id = $1;', [id]);
+        if (rows[0]) {
+            return new Category(rows[0]);
+        } else {
+            return null;
+        }
+    }
 }
 
 module.exports = Category;

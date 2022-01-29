@@ -5,7 +5,7 @@ const schema = Joi.object({
     slug: Joi.string().min(5).required(),
     content: Joi.string().min(50).required(),
     excerpt: Joi.string().min(50).required(),
-    categoryId: Joi.number().integer().required()
+    category_id: Joi.number().integer().required()
 });
 
 module.exports = schema;

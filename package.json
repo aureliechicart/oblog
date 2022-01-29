@@ -4,7 +4,7 @@
   "description": "Simplistic API for a blog with posts and categories\r Each post must have one category.\r Create and Read posts\r Read categories",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
