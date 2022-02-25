@@ -8,7 +8,6 @@ Same API served as GraphQL on [GraphQL branch](https://github.com/aureliechicart
 
 ## Learning goals
 
-
 ### Database
 
 - Database modeling: project [MCD/MLD](design)
