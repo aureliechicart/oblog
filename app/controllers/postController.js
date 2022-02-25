@@ -4,6 +4,7 @@ const cache = require('../services/cache');
 
 const postController = {
     allPosts: async (_, res) => {
+        console.log('carotte');
         try {
             const thePosts = await Post.findAll();
             res.json(thePosts);
