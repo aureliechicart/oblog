@@ -117,10 +117,12 @@ To access the Swagger doc and discover the available API endpoints, go to `http:
 
 ### Testing the GraphQL API
 
-Access the graphQL branch:
+Checkout the graphQL branch:
 
 ```bash
 git checkout graphql
 ```
 
-Restart the server and visit `http://localhost:<port>/graphql` in your browser to excute queries and mutations. Review [this file](https://github.com/aureliechicart/oblog/blob/graphql/graphql_tests.md) for query and mutation examples.
+Run the `npm i` command to install graphql-yoga.  
+Restart the server and visit `http://localhost:<port>` in your browser to access the graphQL playground. There, you can build and run queries and mutations against graphQL server.  
+Review [this file](https://github.com/aureliechicart/oblog/blob/graphql/graphql_tests.md) for query and mutation examples adapted to this API.
